@@ -42,7 +42,7 @@ module.exports = {
      "react/jsx-uses-vars": "error",
 
      "space-in-parens": [ 0, "always" ],
-     "template-curly-spacing": [ 2, "always" ],
+     "template-curly-spacing": [ 2, "never" ],
      "array-bracket-spacing": [ 2, "always" ],
      "object-curly-spacing": [ 2, "always" ],
      "computed-property-spacing": [ 2, "always" ],
