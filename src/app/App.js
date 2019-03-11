@@ -1,12 +1,10 @@
 import React from 'react';
-import logo from './logo.svg';
 import styles from './App.scss';
 
 const App = () => {
   return (
     <div className={styles.app}>
       <header className={styles.appHeader}>
-        <img src={logo} className={styles.appLogo} alt="logo" />
         <p>
           Edit
           {' '}

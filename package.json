@@ -74,7 +74,7 @@
   },
   "lint-staged": {
     "*.{js,jsx}": [
-      "eslint -c .eslintrc.js src/"
+      "eslint -c .eslintrc.js"
     ]
   },
   "browserslist": [

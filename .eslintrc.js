@@ -1,6 +1,3 @@
-const path = require('path');
-const isProduction = process.env.NODE_ENV === 'production';
-
 module.exports = {
   "parserOptions": {
     "parser": "babel-eslint",
@@ -35,7 +32,7 @@ module.exports = {
     "react",
   ],
   "rules": {
-    "import/no-unresolved": [2, { "commonjs": true, "amd": true }],
+    "import/no-unresolved": "off",
      "import/named": 2,
      "import/namespace": 2,
      "import/default": 2,
@@ -43,7 +40,6 @@ module.exports = {
 
      "react/jsx-uses-react": "error",
      "react/jsx-uses-vars": "error",
-
 
      "space-in-parens": [ 0, "always" ],
      "template-curly-spacing": [ 2, "always" ],

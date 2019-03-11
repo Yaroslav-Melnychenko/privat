@@ -131,7 +131,7 @@ module.exports = function(webpackEnv) {
       // of CSS changes), or refresh the page (in case of JS changes). When you
       // make a syntax error, this client will display a syntax error overlay.
       // Note: instead of the default WebpackDevServer client, we use a custom one
-      // to bring better experience for Create React App users. You can replace
+      // to bring better experience for Create React app users. You can replace
       // the line below with these two lines if you prefer the stock client:
       // require.resolve('webpack-dev-server/client') + '?/',
       // require.resolve('webpack/hot/dev-server'),
@@ -262,9 +262,12 @@ module.exports = function(webpackEnv) {
         .map(ext => `.${ext}`)
         .filter(ext => useTypeScript || !ext.includes('ts')),
       alias: {
-        // Support React Native Web
-        // https://www.smashingmagazine.com/2016/08/a-glimpse-into-the-future-with-react-native-for-web/
-        'react-native': 'react-native-web',
+        'App': path.resolve(__dirname, '..', 'src/app'),
+        'Pages': path.resolve(__dirname, '..', 'src/pages'),
+        'Services': path.resolve(__dirname, '..', 'src/services'),
+        'Shared': path.resolve(__dirname, '..', 'src/shared'),
+        'Utils': path.resolve(__dirname, '..', 'src/utils'),
+        'Store': path.resolve(__dirname, '..', 'src/store')
       },
       plugins: [
         // Adds support for installing with Plug'n'Play, leading to faster installs and adding
