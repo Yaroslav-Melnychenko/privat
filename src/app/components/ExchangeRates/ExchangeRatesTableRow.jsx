@@ -1,4 +1,5 @@
 import React from 'react';
+import { string, number } from 'prop-types';
 
 const ExchangeRatesTableRow = (props) => {
   const { currency, saleRateNB, purchaseRateNB } = props;
@@ -10,4 +11,9 @@ const ExchangeRatesTableRow = (props) => {
     </tr>
   )
 }
+ExchangeRatesTableRow.propTypes = {
+  currency: string.isRequired,
+  saleRateNB: number.isRequired,
+  purchaseRateNB: number.isRequired
+};
 export default ExchangeRatesTableRow;
