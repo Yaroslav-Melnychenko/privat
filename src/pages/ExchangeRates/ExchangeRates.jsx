@@ -5,7 +5,6 @@ import styles from './ExchangeRates.scss';
 
 const ExchangeRates = (props) => {
   const { currencies } = props;
-
   return (
     <table className={styles.currencyData}>
       <thead>

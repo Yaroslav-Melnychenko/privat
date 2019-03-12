@@ -1,16 +1,17 @@
 import React from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
+import thunk from 'redux-thunk';
 
 import Routes from './Routes';
 
-import currencyReducer from './reducers/currencyReducer';
+import reducers from './store/reducers';
 import Header from './Header';
 
 // import styles from './App.scss';
 
-const store = createStore(currencyReducer);
+const store = createStore(reducers, applyMiddleware(thunk));
 
 const App = () => {
   return (
