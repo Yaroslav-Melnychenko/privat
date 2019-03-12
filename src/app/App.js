@@ -1,5 +1,5 @@
 import React, { Suspense  } from 'react';
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import styles from './App.scss';
 import Header from './components/Header/Header';
 import ExchangeRates from './components/ExchangeRates/ExchangeRates';
