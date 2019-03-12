@@ -6,7 +6,7 @@ import { createStore } from 'redux';
 import Routes from './Routes';
 
 import currencyReducer from './reducers/currencyReducer';
-import Header from './Header/Header';
+import Header from './Header';
 
 // import styles from './App.scss';
 
