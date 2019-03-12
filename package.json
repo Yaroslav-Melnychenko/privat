@@ -112,7 +112,19 @@
     ],
     "moduleNameMapper": {
       "^react-native$": "react-native-web",
-      "^.+\\.module\\.(css|sass|scss)$": "identity-obj-proxy"
+      "^.+\\.module\\.(css|sass|scss)$": "identity-obj-proxy",
+      "^App/(.*)$": "<rootDir>/src/app/$1",
+      "^App$": "<rootDir>/src/app",
+      "^Pages/(.*)$": "<rootDir>/src/pages/$1",
+      "^Pages$": "<rootDir>/src/pages",
+      "^Services/(.*)$": "<rootDir>/src/services/$1",
+      "^Services$": "<rootDir>/src/services",
+      "^Shared/(.*)$": "<rootDir>/src/shared/$1",
+      "^Shared$": "<rootDir>/src/shared",
+      "^Utils/(.*)$": "<rootDir>/src/utils/$1",
+      "^Utils$": "<rootDir>/src/utils",
+      "^Store/(.*)$": "<rootDir>/src/store/$1",
+      "^Store$": "<rootDir>/src/store"
     },
     "moduleFileExtensions": [
       "web.js",
