@@ -1,0 +1,17 @@
+header {
+  background-color: #eaeaea;
+  padding: 15px 10px;
+  ul {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    li {
+      list-style: none;
+      cursor: pointer;
+      font-weight: 500;
+      a {
+        color: #75af26;
+      }
+    }
+  }
+}

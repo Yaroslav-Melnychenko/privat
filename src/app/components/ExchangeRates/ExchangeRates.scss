@@ -1,0 +1,16 @@
+.currencyData{
+  width: 100%;
+  text-align: center;
+  thead{
+    line-height: 30px;
+    font-weight: 500;
+    background-color: #545454;
+    color: #fff;
+  }
+  tr {
+    line-height: 25px;
+  }
+  tr:nth-child(even) {
+    background-color: #f3f3f3;
+  }
+}

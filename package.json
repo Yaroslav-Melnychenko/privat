@@ -50,6 +50,7 @@
     "react-dom": "^16.8.4",
     "react-redux": "^6.0.1",
     "react-router": "^4.3.1",
+    "react-router-dom": "^4.3.1",
     "redux": "^4.0.1",
     "redux-thunk": "^2.3.0",
     "resolve": "1.10.0",
@@ -125,8 +126,8 @@
       "node"
     ],
     "watchPlugins": [
-      "/Users/ihor.verkhohliad/WebstormProjects/intern/privat/node_modules/jest-watch-typeahead/filename.js",
-      "/Users/ihor.verkhohliad/WebstormProjects/intern/privat/node_modules/jest-watch-typeahead/testname.js"
+      "./node_modules/jest-watch-typeahead/filename.js",
+      "./node_modules/jest-watch-typeahead/testname.js"
     ]
   },
   "babel": {
