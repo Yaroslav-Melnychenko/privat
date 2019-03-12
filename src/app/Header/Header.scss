@@ -1,0 +1,17 @@
+.header {
+  background-color: #eaeaea;
+  padding: 15px 10px;
+}
+
+.menu {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.link {
+  color: #75af26;
+  list-style: none;
+  cursor: pointer;
+  font-weight: 500;
+}

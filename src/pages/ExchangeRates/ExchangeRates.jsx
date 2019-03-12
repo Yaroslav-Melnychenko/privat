@@ -1,11 +1,11 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import { arrayOf, shape, number, string } from 'prop-types';
+
 import styles from './ExchangeRates.scss';
-import ExchangeRatesTableRow from './ExchangeRatesTableRow';
 
 const ExchangeRates = (props) => {
-  const { currency } = props; 
+  const { currencies } = props;
+
   return (
     <table className={styles.currencyData}>
       <thead>
@@ -17,26 +17,25 @@ const ExchangeRates = (props) => {
       </thead>
       <tbody>
         {
-          currency.map((row) => (
-            <ExchangeRatesTableRow key={Math.random()} currency={row.currency} saleRateNB={row.saleRateNB} purchaseRateNB={row.purchaseRateNB} />)
-          )
+          currencies.map(({ currency, saleRateNB, purchaseRateNB }) => (
+            <tr key={currency}>
+              <td>{currency}</td>
+              <td>{saleRateNB}</td>
+              <td>{purchaseRateNB}</td>
+            </tr>
+          ))
         }
-        
       </tbody>
     </table>
   )
-}
+};
 
 ExchangeRates.propTypes = {
-  currency: arrayOf(shape({
+  currencies: arrayOf(shape({
     currency: string,
     saleRateNB: number,
     purchaseRateNB: number
   })).isRequired
 };
 
-const getData = (state) => {
-  return state;
-}
-
-export default connect(getData)(ExchangeRates);
+export default ExchangeRates;

@@ -1,5 +1,5 @@
 const initState = {
-  currency: [
+  currencies: [
     {
       currency: 'USD',
       saleRateNB: 26.3891670,

@@ -63,6 +63,7 @@ module.exports = {
      "no-param-reassign": [ 1 ],
      "no-shadow": [ 1 ],
      "camelcase": [ 1 ],
-     "no-underscore-dangle" : [0, "always"]
+     "no-underscore-dangle" : [0, "always"],
+    "import/prefer-default-export": "off",
   }
 }
