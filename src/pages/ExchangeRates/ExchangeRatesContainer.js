@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 
 import ExchangeRates from './ExchangeRates';
+import { fetchCurrencies } from '../../app/store/currencies/actions';
 
 const mapStateToProps = ({ currencies }) => {
   return {
@@ -8,4 +9,10 @@ const mapStateToProps = ({ currencies }) => {
   };
 };
 
-export default connect(mapStateToProps)(ExchangeRates);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    fetchData: () => dispatch(fetchCurrencies())
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(ExchangeRates);

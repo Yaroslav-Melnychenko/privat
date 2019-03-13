@@ -1,38 +1,22 @@
-export const currenciesHasErrored = (bool) => {
+// import { getCurrentCashRate } from 'Services/api/currency';
+
+export const initCurrency = (currencies) => {
   return {
-      type: 'CURRENCIES_HAS_ERRORED',
-      hasErrored: bool
-  };
+    type: 'INIT_CURRENCY',
+    currencies
+  }
 }
 
-export const currenciesIsLoading = (bool) => {
-  return {
-      type: 'CURRENCIES_IS_LOADING',
-      isLoading: bool
-  };
-}
+// export async function fetchCurrencies() {
+//   return await getCurrentCashRate().then(response => {
+//     return response
+//   });
+// }
 
-export function currenciesFetchDataSuccess(currency) {
-  return {
-      type: 'CURRENCIES_FETCH_DATA_SUCCESS',
-      currency
-  };
-}
-
-export function currenciesFetchData(url) {
+export function fetchCurrencies(url = 'https://api.privatbank.ua/p24api/pubinfo?json&exchange&coursid=5') {
   return (dispatch) => {
-    dispatch(currenciesIsLoading(true));
-
     fetch(url)
-      .then((response) => {
-        if (!response.ok) {
-          throw Error(response.statusText);
-        }
-        dispatch(currenciesIsLoading(false));
-          return response;
-      })
-        .then((response) => response.json())
-        .then((items) => dispatch(currenciesFetchDataSuccess(items)))
-        .catch(() => dispatch(currenciesHasErrored(true)));
+    .then((response) => response.json())
+    .then((items) => dispatch(initCurrency(items)));
   };
 }
