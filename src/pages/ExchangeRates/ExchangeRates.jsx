@@ -6,22 +6,22 @@ import 'react-datepicker/dist/react-datepicker.css';
 import styles from './ExchangeRates.scss';
 
 const ExchangeRates = (props) => {
-  const { currencies, fetchData } = props;
-  const date = new Date();
+  const { currencies, fetchData, fetchDataByDate } = props;
+  const nowDate = new Date();
 
   useEffect(() => {fetchData()}, []);
 
-  const changeDate = () => {
-    //сode
+  const changeDate = (date) => {
+    window.console.log(date);
+    fetchDataByDate('14.03.2018');
   }
 
   return (
     <div>
       <span className={styles.mdate}>Select date: </span>
       <DatePicker 
-        onSelect={changeDate()}
-        // selected={date}
-        maxDate={date}
+        onChange={changeDate}
+        maxDate={nowDate}
         className={styles.mdate}
       />
       <table className={styles.currencyData}>

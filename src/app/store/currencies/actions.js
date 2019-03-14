@@ -1,4 +1,4 @@
-import { getCurrentCashRate } from 'Services/api/currency';
+import { getCurrentCashRate, getCurrentCashByDate } from 'Services/api/currency';
 
 const initCurrency = (currencies) => {
   return {
@@ -9,7 +9,14 @@ const initCurrency = (currencies) => {
 
 export const fetchCurrencies = () => {
   return async (dispatch) => {
-     const { data } = await getCurrentCashRate();
-     dispatch(initCurrency(data))
+    const { data } = await getCurrentCashRate();
+    dispatch(initCurrency(data))
+  }
+}
+
+export const fetchCurrenciesByDate = (timeDate) => {
+  return async (dispatch) => {
+    const { data } = await getCurrentCashByDate(timeDate);
+    dispatch(initCurrency(data));
   }
 }

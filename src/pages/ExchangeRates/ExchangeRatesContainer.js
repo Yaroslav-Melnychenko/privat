@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 
 import ExchangeRates from './ExchangeRates';
-import { fetchCurrencies } from '../../app/store/currencies/actions';
+import { fetchCurrencies, fetchCurrenciesByDate } from '../../app/store/currencies/actions';
 
 const mapStateToProps = ({ currencies }) => {
   return {
@@ -11,7 +11,8 @@ const mapStateToProps = ({ currencies }) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetchData: () => dispatch(fetchCurrencies())
+    fetchData: () => dispatch(fetchCurrencies()),
+    fetchDataByDate: (date) => dispatch(fetchCurrenciesByDate(date))
   };
 };
 
