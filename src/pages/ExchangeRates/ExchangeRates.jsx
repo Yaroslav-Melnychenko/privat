@@ -1,12 +1,14 @@
-import React from 'react';
-import { arrayOf, shape, number, string } from 'prop-types';
+import React, { useEffect } from 'react';
+import { arrayOf, shape, number, string, func } from 'prop-types';
 import DatePicker from 'react-datepicker';
  
 import 'react-datepicker/dist/react-datepicker.css';
 import styles from './ExchangeRates.scss';
 
 const ExchangeRates = (props) => {
-  const { currencies } = props;
+  const { currencies, fetchData } = props;
+
+  useEffect(() => {fetchData()}, []);
 
   return (
     <div>
@@ -15,8 +17,8 @@ const ExchangeRates = (props) => {
       <table className={styles.currencyData}>
         <thead>
           <tr>
+            <td>Основная валюта</td>
             <td>Валюта</td>
-            <td>Основная Валюта</td>
             <td>Покупка</td>
             <td>Продажа</td>
           </tr>
@@ -24,9 +26,9 @@ const ExchangeRates = (props) => {
         <tbody>
           {
             currencies.map(({ ccy, base_ccy, buy, sale }) => (
-              <tr key={base_ccy}>
-                <td>{ccy}</td>
+              <tr key={ccy}>
                 <td>{base_ccy}</td>
+                <td>{ccy}</td>
                 <td>{buy}</td>
                 <td>{sale}</td>
               </tr>
@@ -43,7 +45,8 @@ ExchangeRates.propTypes = {
     currency: string,
     saleRateNB: number,
     purchaseRateNB: number
-  })).isRequired
+  })).isRequired,
+  fetchData: func.isRequired
 };
 
 export default ExchangeRates;
