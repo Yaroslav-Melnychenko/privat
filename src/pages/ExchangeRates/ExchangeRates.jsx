@@ -7,13 +7,23 @@ import styles from './ExchangeRates.scss';
 
 const ExchangeRates = (props) => {
   const { currencies, fetchData } = props;
+  const date = new Date();
 
   useEffect(() => {fetchData()}, []);
+
+  const changeDate = () => {
+    //сode
+  }
 
   return (
     <div>
       <span className={styles.mdate}>Select date: </span>
-      <DatePicker selected={new Date()} className={styles.mdate} />
+      <DatePicker 
+        onSelect={changeDate()}
+        // selected={date}
+        maxDate={date}
+        className={styles.mdate}
+      />
       <table className={styles.currencyData}>
         <thead>
           <tr>
