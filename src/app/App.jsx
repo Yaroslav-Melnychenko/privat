@@ -3,10 +3,9 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
-
+import reducers from 'Store/reducers';
 import Routes from './Routes';
 
-import reducers from './store/reducers';
 import Header from './Header';
 
 // import styles from './App.scss';

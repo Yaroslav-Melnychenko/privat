@@ -1,7 +1,6 @@
 import { connect } from 'react-redux';
-
+import { fetchCurrencies, fetchCurrenciesByDate } from 'Store/currencies/actions';
 import ExchangeRates from './ExchangeRates';
-import { fetchCurrencies, fetchCurrenciesByDate } from '../../app/store/currencies/actions';
 
 const mapStateToProps = ({ currencies }) => {
   return {
