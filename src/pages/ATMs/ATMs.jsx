@@ -1,28 +1,33 @@
-import React from 'react';
-import { Map, Marker, GoogleApiWrapper } from 'google-maps-react';
-import { shape } from 'prop-types';
+import React, { useEffect } from 'react';
+import { Map ,Marker, GoogleApiWrapper } from 'google-maps-react';
+import { shape, func, arrayOf } from 'prop-types';
 
 // import styles from './ATMs.scss';
 
 const ATMs = (props) => {
-  const { google } = props;
+  const { google, fetchData, results } = props;
+
+  useEffect(() => {fetchData()}, []);
+
+  const returnMarkers = () => {
+    if (results) return results.map((marker) => <Marker key={marker.place_id} position={marker.geometry.location} />);
+  } 
   
   return (
     <Map 
       google={google}
-      initialCenter={{ lat: 40.03, lng: -77.02 }}
-      zoom={5}
+      initialCenter={{ lat: 50.4457069, lng: 30.4945147 }}
+      zoom={14}
     >
-      <Marker position={{ lat: 42.02, lng: -70.01 }} />
-      <Marker position={{ lat: 40.03, lng: -77.02 }} />
-      <Marker position={{ lat: 49.03, lng: -70.04 }} />
-      <Marker position={{ lat: 45.05, lng: -73.02 }} />
+      {returnMarkers()}
     </Map>
   )
 };
 
 ATMs.propTypes = {
   google: shape().isRequired,
+  fetchData: func.isRequired,
+  results: arrayOf.isRequired
 };
 
 export default GoogleApiWrapper({
