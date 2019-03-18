@@ -1,6 +1,9 @@
 .header {
+  position: relative;
   background-color: #eaeaea;
   padding: 15px 10px;
+  border-bottom: solid 3px #c0ecae;
+  z-index: 2;
 }
 
 .menu {
