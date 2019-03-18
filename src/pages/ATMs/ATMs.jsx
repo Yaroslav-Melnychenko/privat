@@ -40,5 +40,5 @@ ATMs.propTypes = {
 };
 
 export default GoogleApiWrapper({
-  apiKey: ('AIzaSyD9GBzVe77PVf3x1FrvDkJCd51-I0gpFf0')
+  apiKey: (process.env.REACT_APP_GOOGLE_MAPS_API_KEY)
 })(ATMs)

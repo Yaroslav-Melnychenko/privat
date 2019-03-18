@@ -5,8 +5,9 @@ import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import reducers from 'Store/reducers';
 import Routes from './Routes';
-
 import Header from './Header';
+
+require('dotenv').config();
 
 // import styles from './App.scss';
 
