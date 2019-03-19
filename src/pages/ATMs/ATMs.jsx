@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Map ,Marker, GoogleApiWrapper } from 'google-maps-react';
+import { Map, Marker, GoogleApiWrapper } from 'google-maps-react';
 import { shape, func, arrayOf } from 'prop-types';
 
 import styles from './ATMs.scss';
@@ -8,11 +8,7 @@ const ATMs = (props) => {
   const { google, fetchData, results } = props;
 
   useEffect(() => {fetchData()}, []);
-
-  const returnMarkers = () => {
-    if (results) return results.map((marker) => <Marker key={marker.place_id} position={marker.geometry.location} />);
-  }
-
+  
   const points = results.map((point) => point.geometry.location );
 
   var bounds = new google.maps.LatLngBounds();
@@ -28,7 +24,11 @@ const ATMs = (props) => {
       zoom={14}
       bounds={bounds}
     >
-      {returnMarkers()}
+      { 
+        results.map((marker) => (
+          <Marker key={marker.place_id} position={marker.geometry.location} />
+        ))
+      }
     </Map>
   )
 };
