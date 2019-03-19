@@ -3,8 +3,15 @@ import axios from 'axios';
 import { GOOGLE_MAPS_PUBLIC_INFO_URL } from './constants';
 
 const getLocationString = () => {
-  return axios.get('http://ip-api.com/json').then( json => json.data.lat + ',' + json.data.lon)
-    .catch(err => window.console.log(err));
+  if (navigator.geolocation) {
+    return new Promise(
+      (resolve, reject) => navigator.geolocation.getCurrentPosition(resolve, reject) 
+    ).then(position => position.coords.latitude + ',' + position.coords.longitude);
+  } else {
+    return axios.get('http://ip-api.com/json').then( json => json.data.lat + ',' + json.data.lon)
+      .catch(err => window.console.log(err));
+  }
+  
 }
 
 export const getAtmsByCity = async () => {

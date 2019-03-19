@@ -15,7 +15,7 @@ const ATMs = (props) => {
   for (var i = 0; i < points.length; i++) {
     bounds.extend(points[ i ]);
   }
-  
+
   return (
     <Map 
       google={google}
