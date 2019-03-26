@@ -7,8 +7,8 @@ const Home = () => {
   const [ posts, setPosts ] = useState([]);
 
   const applyNews = (search) => {
-    if (search === null) {
-      axios.get(`https://newsapi.org/v2/top-headlines?country=ru&apiKey=${process.env.REACT_APP_NEWS_API_KEY}`)
+    if (search === undefined) {
+      axios.get(`https://newsapi.org/v2/top-headlines?country=ua&apiKey=${process.env.REACT_APP_NEWS_API_KEY}`)
       .then(news => {
         setPosts(news.data.articles);
       });
@@ -32,15 +32,17 @@ const Home = () => {
     <div className={styles.container}>
       <h1>Последние новости</h1>
       <span>Найти новость: </span> 
-      <input type="text" onChange={findNews} />
+      <input className={styles.input} type="text" onChange={findNews} />
       {
         posts.map(post => (
           <div key={Math.random()} className={styles.newsContainer}>
-            <h3>{post.title}</h3>
-            <p><i>{post.publishedAt.split('T')[ 0 ]}</i></p>
-            <img src={post.urlToImage} alt="" />
-            <p>{post.description}</p>
-            <a href={post.url} target="_blank" rel="noopener noreferrer">Посмотреть</a>
+            <div>{post.urlToImage ? <img src={post.urlToImage} alt="" /> : null }</div>
+            <div>
+              <h3 className={styles.mt0}>{post.title}</h3>
+              <p>{post.description}</p>
+              <p><i>{post.publishedAt.split('T')[ 0 ]}</i></p>
+              <a href={post.url} className={styles.link} target="_blank" rel="noopener noreferrer">Посмотреть</a>
+            </div>
           </div>
         ))
       }
