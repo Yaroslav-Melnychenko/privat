@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 import styles from './Home.scss';
 
 const Home = () => {
@@ -7,7 +8,7 @@ const Home = () => {
   const [ posts, setPosts ] = useState([]);
 
   const applyNews = (search) => {
-    if (search === null) {
+    if (search === undefined) {
       axios.get(`https://newsapi.org/v2/top-headlines?country=ru&apiKey=${process.env.REACT_APP_NEWS_API_KEY}`)
       .then(news => {
         setPosts(news.data.articles);
@@ -16,6 +17,7 @@ const Home = () => {
       axios.get(`https://newsapi.org/v2/everything?q=${search}&from=&sortBy=popularity&apiKey=${process.env.REACT_APP_NEWS_API_KEY}`)
       .then(news => {
         setPosts(news.data.articles);
+        window.console.log(news.data.articles);
       });
     }
   }
@@ -40,7 +42,7 @@ const Home = () => {
             <p><i>{post.publishedAt.split('T')[ 0 ]}</i></p>
             <img src={post.urlToImage} alt="" />
             <p>{post.description}</p>
-            <a href={post.url} target="_blank" rel="noopener noreferrer">Посмотреть</a>
+            <Link to={'/news/' + post.publishedAt}>Посмотреть</Link>
           </div>
         ))
       }
