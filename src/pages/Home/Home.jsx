@@ -6,26 +6,26 @@ const Home = () => {
 
   const [ posts, setPosts ] = useState([]);
 
-  useEffect(() => {
-    axios.get('https://newsapi.org/v2/top-headlines?country=ru&apiKey=357f3d3ae7304b9da671fa6f5e934d60')
-      .then(news => {
-        setPosts(news.data.articles);
-      });
-  }, []);
-
-  const findNews = (e) => {
-    const text = e.target.value;
-    if (text !== '') {
-      axios.get(`https://newsapi.org/v2/everything?q=${text}&from=&sortBy=popularity&apiKey=357f3d3ae7304b9da671fa6f5e934d60`)
+  const applyNews = (search) => {
+    if (search === null) {
+      axios.get(`https://newsapi.org/v2/top-headlines?country=ru&apiKey=${process.env.REACT_APP_NEWS_API_KEY}`)
       .then(news => {
         setPosts(news.data.articles);
       });
     } else {
-      axios.get('https://newsapi.org/v2/top-headlines?country=ru&apiKey=357f3d3ae7304b9da671fa6f5e934d60')
+      axios.get(`https://newsapi.org/v2/everything?q=${search}&from=&sortBy=popularity&apiKey=${process.env.REACT_APP_NEWS_API_KEY}`)
       .then(news => {
         setPosts(news.data.articles);
       });
     }
+  }
+
+  useEffect(() => { applyNews() }, []);
+
+  const findNews = (e) => {
+    const text = e.target.value;
+    if (text !== '') applyNews(text)
+    else applyNews()
   }
 
   return (
