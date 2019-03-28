@@ -4,6 +4,7 @@ import { Switch, Route } from 'react-router-dom';
 import Home from 'Pages/Home';
 import ExchangeRates from 'Pages/ExchangeRates';
 import ATMs from 'Pages/ATMs';
+import Weather from 'Pages/Weather';
 import { ROUTES } from './constants';
 
 const routes = [
@@ -15,6 +16,9 @@ const routes = [
   ],
   [
     ROUTES.atms.path, ATMs,
+  ],
+  [
+    ROUTES.weather.path, Weather
   ]
 ];
 

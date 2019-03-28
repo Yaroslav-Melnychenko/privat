@@ -11,4 +11,8 @@ export const ROUTES = {
     path: '/atms',
     label: 'Ближайшие банкоматы'
   },
+  weather: {
+    path: '/weather',
+    label: 'Погода'
+  },
 };

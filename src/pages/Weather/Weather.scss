@@ -1,0 +1,38 @@
+.container {
+  max-width: 800px;
+  margin: 35px auto;
+  padding: 0 15px;
+  display: flex; 
+  justify-content: flex-end;
+}
+
+.weather {
+  max-width: 350px;
+  margin-top: 45px;
+  text-align: right;
+  color: #263b40;
+}
+
+.city {
+  font-size: 52px;
+}
+
+.temperature {
+  position: relative;
+  font-size: 45px;
+}
+
+.temperature:after {
+  content: 'o';
+  position: absolute;
+  font-size: 22px;
+  right: -15px;
+}
+
+.temperature:before {
+  content: 'C';
+  position: absolute;
+  right: -30px;
+  bottom: 4px;
+  font-size: 28px;
+}
