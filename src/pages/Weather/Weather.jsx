@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import sunny from 'Images/weather/sunny.png';
+// import sunny from 'Images/weather/sunny.png';
 import { getWeatherByCity } from 'Services/api/weather';
 import styles from './Weather.scss';
 
@@ -14,7 +14,7 @@ const Weather = () => {
       <div className={styles.weather}>
         <div className={styles.city}>Paris</div>
         <div className={styles.celcius}>
-          <img className={styles.weatherPicture} src={sunny} alt="" />
+          {/* <img className={styles.weatherPicture} src={sunny} alt="" /> */}
           <span className={styles.temperature}>
             <span>17</span>
             <span className={styles.circle}>o</span>
