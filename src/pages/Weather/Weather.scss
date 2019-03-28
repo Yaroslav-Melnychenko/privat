@@ -22,17 +22,25 @@
   font-size: 45px;
 }
 
-.temperature:after {
-  content: 'o';
-  position: absolute;
-  font-size: 22px;
-  right: -15px;
+.weatherPicture {
+  transform: translate(0);
 }
 
-.temperature:before {
-  content: 'C';
+.celcius {
+  display: flex;
+  align-items: center;
+}
+
+.circle {
+  font-size: 18px;
   position: absolute;
-  right: -30px;
-  bottom: 4px;
+  top: 0;
+  right: -12px;
+}
+
+.celciusMark {
+  position: absolute;
   font-size: 28px;
+  bottom: 5px;
+  right: -25px;
 }
