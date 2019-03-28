@@ -1,0 +1,39 @@
+.container {
+  max-width: 800px;
+  margin: 35px auto;
+  padding: 0 15px;
+}
+
+.newsContainer {
+  border: solid 1px #e8e8e8;
+  border-radius: 4px;
+  padding: 15px;
+  margin-top: 25px;
+  display: flex;
+  img {
+    width: 250px;
+    height: auto;
+    margin-right: 25px;
+  }
+}
+
+.link {
+  background-color: #c0ecae;
+  color: rgb(32, 32, 32);
+  text-decoration: none;
+  padding: 3px 10px;
+  border-radius: 4px;
+}
+
+.input {
+  border: solid 1px #e8e8e8;
+  border-radius: 3px;
+  line-height: 24px;
+  height: 24px;
+  margin-left: 15px;
+  text-indent: 5px;
+}
+
+.mt0{
+  margin-top: 0;
+}
