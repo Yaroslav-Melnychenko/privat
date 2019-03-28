@@ -1,11 +1,11 @@
 import axios from 'axios';
 
-import { PRIVAT_PUBLIC_INFO_URL } from './constants';
+import { NBU_PUBLIC_INFO_URL } from './constants';
 
 export const getCurrentCashRate = () => {
-  return axios.get(`${PRIVAT_PUBLIC_INFO_URL}?json&exchange&coursid=5`);
+  return axios.get(`${NBU_PUBLIC_INFO_URL}?json`);
 };
 
-export const getCurrentNoCashRate = () => {
-  return axios.get(`${PRIVAT_PUBLIC_INFO_URL}?exchange&json&coursid=11`);
-};
+export const getCurrentCashByDate = (date) => {
+  return axios.get(`${NBU_PUBLIC_INFO_URL}?date=${date}&json`);
+}
