@@ -1,8 +1,9 @@
-import { getAtmsByCity } from 'Services/api/atms';
+import { getAtmsByCity } from 'Services/api';
+import { INIT_ATMS } from './constants';
 
 const initAtms = (atms) => {
   return {
-    type: 'INIT_ATMS',
+    type: INIT_ATMS,
     atms
   }
 }

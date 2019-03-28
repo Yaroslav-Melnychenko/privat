@@ -268,7 +268,7 @@ module.exports = function(webpackEnv) {
         'Shared': path.resolve(__dirname, '..', 'src/shared'),
         'Utils': path.resolve(__dirname, '..', 'src/utils'),
         'Store': path.resolve(__dirname, '..', 'src/store'),
-        'Images': path.resolve(__dirname, '..', 'src/images')
+        'Assets': path.resolve(__dirname, '..', 'src/assets')
       },
       plugins: [
         // Adds support for installing with Plug'n'Play, leading to faster installs and adding

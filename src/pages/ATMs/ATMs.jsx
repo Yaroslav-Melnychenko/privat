@@ -1,5 +1,5 @@
 import React, { useEffect, useState  } from 'react';
-import { Map, Marker, GoogleApiWrapper, InfoWindow } from 'google-maps-react';
+import { Map, Marker, InfoWindow } from 'google-maps-react';
 import { shape, func, arrayOf } from 'prop-types';
 
 import styles from './ATMs.scss';
@@ -15,9 +15,9 @@ const ATMs = (props) => {
   const points = results.map((point) => point.geometry.location );
 
   var bounds = new google.maps.LatLngBounds();
-  for (var i = 0; i < points.length; i++) {
-    bounds.extend(points[ i ]);
-  }
+  points.forEach(point  => {
+    bounds.extend(point);
+  });
 
   const onMarkerClick = (options, marker) => {
     setSelectedPlace(options);
@@ -29,8 +29,6 @@ const ATMs = (props) => {
     <Map 
       google={google}
       className={styles.mapContainer}
-      initialCenter={{ lat: 50.4457069, lng: 30.4945147 }}
-      zoom={14}
       bounds={bounds}
     >
       { 
@@ -61,6 +59,4 @@ ATMs.propTypes = {
   results: arrayOf.isRequired
 };
 
-export default GoogleApiWrapper({
-  apiKey: (process.env.REACT_APP_GOOGLE_MAPS_API_KEY)
-})(ATMs)
+export default ATMs;
