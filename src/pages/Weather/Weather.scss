@@ -1,46 +1,28 @@
 .container {
-  max-width: 800px;
-  margin: 35px auto;
-  padding: 0 15px;
-  display: flex; 
-  justify-content: flex-end;
-}
-
-.weather {
-  max-width: 350px;
-  margin-top: 45px;
-  text-align: right;
-  color: #263b40;
-}
-
-.city {
-  font-size: 52px;
-}
-
-.temperature {
-  position: relative;
-  font-size: 45px;
-}
-
-.weatherPicture {
-  transform: translate(0);
-}
-
-.celcius {
+  width: 100%;
+  height: 100%;
+  position: absolute;
   display: flex;
   align-items: center;
-}
-
-.circle {
-  font-size: 18px;
-  position: absolute;
+  justify-content: center;
   top: 0;
-  right: -12px;
 }
 
-.celciusMark {
-  position: absolute;
-  font-size: 28px;
-  bottom: 5px;
-  right: -25px;
+.img {
+  vertical-align: middle;
+}
+
+.list {
+  
+  li {
+    list-style: none;
+    margin-top: 15px;
+    font-size: 18px;
+  }
+}
+
+.infoContainer {
+  padding: 15px 45px;
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
 }

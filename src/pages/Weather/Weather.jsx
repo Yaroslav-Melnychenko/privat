@@ -1,27 +1,33 @@
-import React, { useEffect } from 'react';
-// import sunny from 'Images/weather/sunny.png';
-import { getWeatherByCity } from 'Services/api/weather';
+import React, { useEffect, useState } from 'react';
+import { getWeatherByCity, getImgByCity } from 'Services/api/weather';
 import styles from './Weather.scss';
 
 const Weather = () => {
 
+  const [ weather, setWeather ] = useState({});
+
   useEffect(() => {
-    window.console.log(getWeatherByCity())
+    getWeatherByCity().then(json => setWeather(json.data))
   }, []);
+
+  window.console.log(getImgByCity('Kyiv'));
 
   return (
     <div className={styles.container}>
-      <div className={styles.weather}>
-        <div className={styles.city}>Paris</div>
-        <div className={styles.celcius}>
-          {/* <img className={styles.weatherPicture} src={sunny} alt="" /> */}
-          <span className={styles.temperature}>
-            <span>17</span>
-            <span className={styles.circle}>o</span>
-            <span className={styles.celciusMark}>C</span>
-          </span>
+      {weather.main ? (
+        <div className={styles.infoContainer}>
+          <h2>
+            {weather.name}
+            <img className={styles.img} src={`http://openweathermap.org/img/w/${weather.weather[ 0 ].icon}.png`} alt="" />
+          </h2>
+          <ul className={styles.list}>
+            <li>{`Температура: ${weather.main.temp}`}</li>
+            <li>{`Влажность: ${weather.main.humidity}`}</li>
+            <li>{`Давление: ${weather.main.pressure}`}</li>
+            
+          </ul>
         </div>
-      </div>
+      ) : <div>Loading weather ...</div>}
     </div>
   )
 }

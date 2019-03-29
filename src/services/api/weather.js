@@ -1,20 +1,23 @@
 import axios from 'axios';
 
-import { WEATHER_PUBLIC_INFO_URL } from './constants';
+import { WEATHER_PUBLIC_INFO_URL, GOOGLE_MAPS_IMG } from './constants';
 
 const getLocationString = () => {
-  if (navigator.geolocation) {
-    return new Promise(
-      (resolve, reject) => navigator.geolocation.getCurrentPosition(resolve, reject) 
-    ).then(position => 'lat=' + position.coords.latitude + '&lon=' + position.coords.longitude);
-  } else {
-    return axios.get('http://ip-api.com/json').then( json => json.data.lat + ',' + json.data.lon)
-      .catch(err => window.console.log(err));
-  }
-  
+    return axios.get('http://ip-api.com/json').then( json => {
+      return json.data.city;
+    })
+}
+
+export const getImgByCity = (city) => {
+  return axios.get(`${GOOGLE_MAPS_IMG}?query=${city}&key=${process.env.REACT_APP_GOOGLE_MAPS_API_KEY}`)
+    .then(json => {
+      const reference = json.data.results[ 0 ].photos[ 0 ].photo_reference;
+      return axios.get(`https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/photo?photoreference=${reference}&key=${process.env.REACT_APP_GOOGLE_MAPS_API_KEY}&maxwidth=1920`)
+        .then(image => image)
+    })
 }
 
 export const getWeatherByCity = async () => {
   const location = await getLocationString();
-  return axios.get(`${WEATHER_PUBLIC_INFO_URL}?${location}&appid=${process.env.REACT_APP_WEATHER_API_KEY}`, { dataType: 'jsonp' });
+  return axios.get(`${WEATHER_PUBLIC_INFO_URL}?q=${location}&appid=${process.env.REACT_APP_WEATHER_API_KEY}`, { dataType: 'jsonp' });
 }
