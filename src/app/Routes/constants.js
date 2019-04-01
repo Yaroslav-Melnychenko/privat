@@ -15,4 +15,8 @@ export const ROUTES = {
     path: '/weather',
     label: 'Погода'
   },
+  crope: {
+    path: '/crop',
+    label: 'Обрезать изображение'
+  }
 };
