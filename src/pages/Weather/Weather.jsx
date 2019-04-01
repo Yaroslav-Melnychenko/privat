@@ -5,15 +5,17 @@ import styles from './Weather.scss';
 const Weather = () => {
 
   const [ weather, setWeather ] = useState({});
+  const [ cityUrl, setCityUrl ] = useState('');
 
   useEffect(() => {
-    getWeatherByCity().then(json => setWeather(json.data))
+    getWeatherByCity().then(json => {
+      setWeather(json.data);
+      return json.data;
+    }).then(data => getImgByCity(data.name).then(url => setCityUrl(url)));
   }, []);
 
-  window.console.log(getImgByCity('Kyiv'));
-
   return (
-    <div className={styles.container}>
+    <div className={styles.container} style={{ backgroundImage: `url(${cityUrl})` }}>
       {weather.main ? (
         <div className={styles.infoContainer}>
           <h2>
@@ -24,7 +26,6 @@ const Weather = () => {
             <li>{`Температура: ${weather.main.temp}`}</li>
             <li>{`Влажность: ${weather.main.humidity}`}</li>
             <li>{`Давление: ${weather.main.pressure}`}</li>
-            
           </ul>
         </div>
       ) : <div>Loading weather ...</div>}

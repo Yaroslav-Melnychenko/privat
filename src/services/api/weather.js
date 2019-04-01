@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { WEATHER_PUBLIC_INFO_URL, GOOGLE_MAPS_IMG } from './constants';
+import { WEATHER_PUBLIC_INFO_URL, GOOGLE_MAPS_IMG, GOOGLE_MAPS_IMG_REF } from './constants';
 
 const getLocationString = () => {
     return axios.get('http://ip-api.com/json').then( json => {
@@ -12,8 +12,8 @@ export const getImgByCity = (city) => {
   return axios.get(`${GOOGLE_MAPS_IMG}?query=${city}&key=${process.env.REACT_APP_GOOGLE_MAPS_API_KEY}`)
     .then(json => {
       const reference = json.data.results[ 0 ].photos[ 0 ].photo_reference;
-      return axios.get(`https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/photo?photoreference=${reference}&key=${process.env.REACT_APP_GOOGLE_MAPS_API_KEY}&maxwidth=1920`)
-        .then(image => image)
+      const urlOfImg = `${GOOGLE_MAPS_IMG_REF}=${reference}&key=${process.env.REACT_APP_GOOGLE_MAPS_API_KEY}`;
+      return urlOfImg;
     })
 }
 
