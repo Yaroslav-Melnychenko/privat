@@ -1,12 +1,14 @@
 import React, { useCallback, useState, useMemo } from 'react';
 import { useDropzone } from 'react-dropzone';
 import ReactCrop from 'react-image-crop';
+import { image64toCanvasRef, extractImageFileExtensionFromBase64, base64StringtoFile, downloadBase64File } from 'Utils/cropImage';
 import 'react-image-crop/dist/ReactCrop.css';
 import styles from './Crope.scss';
 
 const Crope = () => {
   const multiple = false;
   const accept = 'image/*';
+  const imagePreviewCanvasRef = React.createRef();
 
   const acceptStyle = {
     borderColor: '#00e676',
@@ -23,7 +25,7 @@ const Crope = () => {
   };
 
   const [ imgSrc, setImgSrc ] = useState(null); 
-  const [ crop, setCrop ] = useState({})
+  const [ crop, setCrope ] = useState(null)
 
   const onDrop = useCallback(acceptedFiles => {
     if(acceptedFiles.length !== 0) {
@@ -47,10 +49,38 @@ const Crope = () => {
     isDragReject
   ]);
 
-  const onCrop = (cropeParam) => {
-    window.console.log(cropeParam);
-    setCrop({ cropeParam });
+  const onCrop = (crop) => {
+    setCrope(crop);
   } 
+
+  const imageLoaded = (image) => {
+    window.console.log('image', image);
+  }
+
+  const onCropComplete = (crop, pixelCrop) => {
+    // window.console.log(crop, pixelCrop, );
+    // window.console.log('pixelCrope', pixelCrop);
+
+    const canvasRef = imagePreviewCanvasRef.current;
+    image64toCanvasRef(canvasRef, imgSrc, pixelCrop);
+  }
+
+  const downloadImage = (e) => {
+    e.preventDefault();
+    const canvasRef = imagePreviewCanvasRef.current;
+    const fileExtension = extractImageFileExtensionFromBase64(imgSrc);
+    const imageData64 = canvasRef.toDataURL('image/' + fileExtension);
+
+    const myFilename = 'croppedImage.' + fileExtension;
+
+    // file uploaded
+    const myNewCroppedFile = base64StringtoFile(imgSrc, myFilename);
+
+    // download file
+    downloadBase64File(imgSrc, myFilename);
+
+    window.console.log(imageData64, myNewCroppedFile);
+  }
 
   return (
     <div className={styles.container}>
@@ -63,7 +93,21 @@ const Crope = () => {
         }
       </div>
       <div className={styles.imgContainer}>
-        {imgSrc ? <ReactCrop src={imgSrc} crop={crop} onChange={onCrop} /> : null}
+        {imgSrc ? 
+          (
+            <ReactCrop 
+              src={imgSrc} 
+              crop={crop} 
+              onChange={onCrop} 
+              onImageLoaded={imageLoaded}
+              onComplete={onCropComplete}
+            />
+          ) 
+          : 
+          null
+        }
+        <canvas ref={imagePreviewCanvasRef} />
+        <button type="button" onClick={downloadImage}>Скачать</button>
       </div>
     </div>
   )
