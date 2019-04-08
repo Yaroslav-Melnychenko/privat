@@ -1,7 +1,7 @@
 import React, { useCallback, useState, useMemo } from 'react';
 import { useDropzone } from 'react-dropzone';
 import ReactCrop from 'react-image-crop';
-import { image64toCanvasRef, extractImageFileExtensionFromBase64, base64StringtoFile, downloadBase64File } from 'Utils/cropImage';
+import { image64toCanvasRef, extractImageFileExtensionFromBase64, downloadBase64File } from 'Utils/cropImage';
 import 'react-image-crop/dist/ReactCrop.css';
 import styles from './Crope.scss';
 
@@ -25,7 +25,8 @@ const Crope = () => {
   };
 
   const [ imgSrc, setImgSrc ] = useState(null); 
-  const [ crop, setCrope ] = useState(null)
+  const [ crop, setCrope ] = useState(null);
+  const [ activeBtn, setActiveBtn ] = useState(false);
 
   const onDrop = useCallback(acceptedFiles => {
     if(acceptedFiles.length !== 0) {
@@ -49,37 +50,35 @@ const Crope = () => {
     isDragReject
   ]);
 
-  const onCrop = (crop) => {
-    setCrope(crop);
+  const onCrop = (newCrop) => {
+    setCrope(newCrop);
   } 
 
-  const imageLoaded = (image) => {
-    window.console.log('image', image);
-  }
-
-  const onCropComplete = (crop, pixelCrop) => {
-    // window.console.log(crop, pixelCrop, );
-    // window.console.log('pixelCrope', pixelCrop);
-
+  const onCropComplete = (newCrop, pixelCrop) => {
     const canvasRef = imagePreviewCanvasRef.current;
     image64toCanvasRef(canvasRef, imgSrc, pixelCrop);
+    if(newCrop.width === 0 && newCrop.height === 0) {
+      setActiveBtn(false);
+    } else {
+      setActiveBtn(true);
+    }
   }
 
   const downloadImage = (e) => {
-    e.preventDefault();
-    const canvasRef = imagePreviewCanvasRef.current;
-    const fileExtension = extractImageFileExtensionFromBase64(imgSrc);
-    const imageData64 = canvasRef.toDataURL('image/' + fileExtension);
+    e.preventDefault()
+    if (imgSrc) {
+      const canvasRef = imagePreviewCanvasRef.current;
+      const imgSrcExt =  extractImageFileExtensionFromBase64(imgSrc);
+      const imageData64 = canvasRef.toDataURL('image/' + imgSrcExt);
+      const myFilename = 'previewFile.' + imgSrcExt;
+      downloadBase64File(imageData64, myFilename);
+    }
+  }
 
-    const myFilename = 'croppedImage.' + fileExtension;
-
-    // file uploaded
-    const myNewCroppedFile = base64StringtoFile(imgSrc, myFilename);
-
-    // download file
-    downloadBase64File(imgSrc, myFilename);
-
-    window.console.log(imageData64, myNewCroppedFile);
+  const closeImg = () => {
+    setImgSrc(null); 
+    setCrope(null);
+    setActiveBtn(false);
   }
 
   return (
@@ -99,16 +98,19 @@ const Crope = () => {
               src={imgSrc} 
               crop={crop} 
               onChange={onCrop} 
-              onImageLoaded={imageLoaded}
               onComplete={onCropComplete}
-            />
+            >
+              <button onClick={closeImg} className={styles.close} type="button">x</button>
+            </ReactCrop>
           ) 
           : 
           null
         }
-        <canvas ref={imagePreviewCanvasRef} />
-        <button type="button" onClick={downloadImage}>Скачать</button>
+        <canvas className={styles.dspln} ref={imagePreviewCanvasRef} />
       </div>
+      {
+        activeBtn ? <button className={styles.btn} type="button" onClick={downloadImage}>Скачать</button> : null
+      }
     </div>
   )
 }
