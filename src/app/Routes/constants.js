@@ -18,5 +18,9 @@ export const ROUTES = {
   crope: {
     path: '/crop',
     label: 'Обрезать изображение'
+  },
+  chart: {
+    path: '/chart',
+    label: 'Статистика'
   }
 };
