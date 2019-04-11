@@ -1,63 +1,44 @@
 import React, { Component } from 'react';
 import {
-  AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip,
+  BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend,
 } from 'recharts';
 import axios from 'axios';
 import styles from './Chart.scss';
 
 class Chart extends Component {
 
-  data = [
-    { name: '2000', uv: 1000 },
-    { name: '2001', uv: 3000 }
-  ];
-
-  jsfiddleUrl = 'https://jsfiddle.net/alidingling/Lrffmzfc/';
+  date = new Date();
 
   constructor() {
     super();
-    this.state = {
-      date: new Date(),
-      // coordinates: []
-    }
+    this.state = {}
   }
 
   componentDidMount() {
-    const { date } = this.state;
-    let mounth = date.getMonth() + 1;
-    // const day = date.getDate();
-    
-    if(mounth < 10) {
-      mounth = '0' + mounth;
-    }
-
-    // for (let i = 0; i <= day; i++) {
-      axios.get(`https://bank.gov.ua/NBUStatService/v1/statdirectory/exchange?date=2019${mounth}10&json`).then(response => {
-        const dollarUsa = response.data.filter(currency => currency.r030 === 840);
-        this.data.push(dollarUsa);
-      })
-    // }
-    // this.setState(this.data);
+    axios.get('https://bank.gov.ua/NBUStatService/v1/statdirectory/exchange?json').then(bankRequest => {
+      this.setState({ currencies: bankRequest.data.filter(currency => 
+        !(currency.r030 === 981 || currency.r030 === 959 || currency.r030 === 961 || currency.r030 === 962 || currency.r030 === 964)
+      ) });
+    })
   }
 
   render() {
-    // setTimeout(window.console.log(this.data), 5000)
+    const { currencies } = this.state;
     return (
       <div className={styles.container}>
-        <AreaChart
-          width={500}
+        <h2>Курс валют</h2>
+        <BarChart
+          width={700}
           height={400}
-          data={this.data}
-          margin={{
-            top: 10, right: 30, left: 0, bottom: 0,
-          }}
+          data={currencies}
         >
-          <CartesianGrid />
-          <XAxis dataKey="name" />
+          <CartesianGrid strokeDasharray="3 3" />
+          <XAxis dataKey="txt" />
           <YAxis />
           <Tooltip />
-          <Area type="monotone" dataKey="uv" stroke="#8884d8" fill="#8884d8" />
-        </AreaChart>
+          <Legend />
+          <Bar dataKey="rate" fill="#8884d8" />
+        </BarChart>
       </div>
     )
   }
