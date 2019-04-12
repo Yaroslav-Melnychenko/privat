@@ -7,6 +7,7 @@ import ATMs from 'Pages/ATMs';
 import Weather from 'Pages/Weather';
 import Crope from 'Pages/Crope';
 import Chart from 'Pages/Chart';
+import DragAndDrop from 'Pages/DragAndDrop';
 import { ROUTES } from './constants';
 
 const routes = [
@@ -27,6 +28,9 @@ const routes = [
   ],
   [
     ROUTES.chart.path, Chart
+  ],
+  [
+    ROUTES.dragAndDrop.path, DragAndDrop
   ]
 ];
 

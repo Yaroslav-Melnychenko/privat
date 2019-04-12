@@ -1,0 +1,28 @@
+.container {
+  max-width: 800px;
+  margin: 40px auto;
+  display: flex;
+  justify-content: space-between;
+}
+
+.itemsContainer {
+  width: 40%;
+}
+
+.target {
+  width: 40%;
+  border: solid 1px #eaeaea;
+  padding: 15px;
+  text-align: center;
+}
+
+.item {
+  padding: 10px;
+  border: solid 1px #eaeaea;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.item:last-child {
+  margin-bottom: 0;
+}

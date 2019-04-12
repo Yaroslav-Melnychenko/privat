@@ -22,5 +22,9 @@ export const ROUTES = {
   chart: {
     path: '/chart',
     label: 'Статистика'
+  },
+  dragAndDrop: {
+    path: '/dnd',
+    label: 'Drag and drop'
   }
 };
