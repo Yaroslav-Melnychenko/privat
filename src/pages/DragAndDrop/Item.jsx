@@ -6,7 +6,10 @@ const itemSource = {
   beginDrag(props) {
     return props.item
   },
-  endDrag(props) {
+  endDrag(props, monitor) {
+    if(!monitor.didDrop()) {
+      return;
+    }
     return props.handleDrop(props.item.id)
   }
 }

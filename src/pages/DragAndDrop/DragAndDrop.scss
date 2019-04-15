@@ -26,3 +26,21 @@
 .item:last-child {
   margin-bottom: 0;
 }
+
+.targetContainer {
+  width: 100%;
+  height: 100%;
+}
+
+.listItems {
+  width: 100%;
+  text-align: center;
+  padding: 5px 0;
+  border: solid 1px #eaeaea;
+  margin-top: 10px;
+}
+
+.listContainer {
+  max-width: 800px;
+  margin: 40px auto;
+}
