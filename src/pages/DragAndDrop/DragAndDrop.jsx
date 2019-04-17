@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Item from './Item';
 import Target from './Target';
-import Card from './Card';
 import styles from './DragAndDrop.scss';
 
 class DragAndDrop extends Component {
@@ -11,14 +10,8 @@ class DragAndDrop extends Component {
       { id: 1, name: 'Item 1' },
       { id: 2, name: 'Item 2' },
       { id: 3, name: 'Item 3' },
-      { id: 4, name: 'Item 4' },
-    ],
-    cards: [
-      { id: 1, name: 'Card 1' },
-      { id: 2, name: 'Card 2' },
-      { id: 3, name: 'Card 3' },
-      { id: 4, name: 'Card 4' },
-    ] 
+      { id: 4, name: 'Item 4' }
+    ]
   }
 
   deleteItem = (id) => {
@@ -31,12 +24,8 @@ class DragAndDrop extends Component {
     this.setState({ items });
   }
 
-  moveCart = () => {
-
-  }
-
   render() {
-    const { items, cards } = this.state;
+    const { items } = this.state;
     return (
       <React.Fragment>
         <div className={styles.container}>
@@ -48,11 +37,6 @@ class DragAndDrop extends Component {
           <div className={styles.target}>
             <Target />
           </div>
-        </div>
-        <div className={styles.listContainer}>
-          {
-            cards.map((cart, index) => <Card key={cart.id} index={index} id={cart.id} name={cart.name} moveCart={this.moveCart} />)
-          }
         </div>
       </React.Fragment>
     )
