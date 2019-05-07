@@ -15,4 +15,16 @@ export const ROUTES = {
     path: '/weather',
     label: 'Погода'
   },
+  crope: {
+    path: '/crop',
+    label: 'Обрезать изображение'
+  },
+  chart: {
+    path: '/chart',
+    label: 'Статистика'
+  },
+  dragAndDrop: {
+    path: '/dnd',
+    label: 'Drag and drop'
+  }
 };

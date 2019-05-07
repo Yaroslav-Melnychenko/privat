@@ -5,6 +5,9 @@ import Home from 'Pages/Home';
 import ExchangeRates from 'Pages/ExchangeRates';
 import ATMs from 'Pages/ATMs';
 import Weather from 'Pages/Weather';
+import Crope from 'Pages/Crope';
+import Chart from 'Pages/Chart';
+import DragAndDrop from 'Pages/DragAndDrop';
 import { ROUTES } from './constants';
 
 const routes = [
@@ -19,6 +22,15 @@ const routes = [
   ],
   [
     ROUTES.weather.path, Weather
+  ],
+  [
+    ROUTES.crope.path, Crope
+  ],
+  [
+    ROUTES.chart.path, Chart
+  ],
+  [
+    ROUTES.dragAndDrop.path, DragAndDrop
   ]
 ];
 

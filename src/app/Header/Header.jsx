@@ -12,10 +12,10 @@ const Header = () => {
           Object.values(ROUTES).map(route => {
             return (
               <li
-                className={styles.link}
+                className={styles.li}
                 key={route.path}
               >
-                <Link to={route.path}>
+                <Link to={route.path} className={styles.link}>
                   {route.label}
                 </Link>
               </li>
